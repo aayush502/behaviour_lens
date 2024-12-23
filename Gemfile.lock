@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    BehaviorLens (0.1.0)
+    behavior_lens (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +13,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  BehaviorLens!
+  behavior_lens!
   rake (~> 13.0)
 
 BUNDLED WITH
