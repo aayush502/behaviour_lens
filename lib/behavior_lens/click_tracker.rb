@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
-module BehaviorLens
-  class ClickTracker
-    def initialize
-      @clicks = Hash.new(0)
-    end
+class BehaviorLens::ClickTracker
 
-    def track(link)
-      @clicks[link] += 1
-    end
+  def track(link)
+    click = Click.find_or_initialize_by(link: link)
+    click.count += 1
+    click.save
+  end
 
-    def most_clicked
-      @clicks.max_by { |_, count| count }
-    end
+  # Retrieve the most clicked link
+  def most_clicked
+    Click.order(count: :desc).first
+  end
 
-    def report
-      @clicks
-    end
+  # Generate a report of all clicks
+  def report
+    Click.all.map { |click| { link: click.link, count: click.count } }
   end
 end
