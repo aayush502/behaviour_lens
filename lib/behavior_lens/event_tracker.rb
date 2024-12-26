@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
+require_relative '../behavior_lens/models/event'
+
 module BehaviorLens
   class EventTracker
+    def initialize
+      Database.connect
+    end
+
     def track(event_name, metadata = {})
       Event.create(
         name: event_name,
-        timestamp: Time.now,
         metadata: metadata
       )
     end
@@ -14,7 +19,7 @@ module BehaviorLens
       Event.all.map do |event|
         {
           name: event.name,
-          timestamp: event.timestamp,
+          timestamp: event.created_at,
           metadata: event.metadata
         }
       end

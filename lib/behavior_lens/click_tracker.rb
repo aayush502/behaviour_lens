@@ -1,20 +1,27 @@
 # frozen_string_literal: true
 
-class BehaviorLens::ClickTracker
+require_relative '../behavior_lens/models/click'
 
-  def track(link)
-    click = Click.find_or_initialize_by(link: link)
-    click.count += 1
-    click.save
-  end
+module BehaviorLens
+  class ClickTracker
+    def initialize
+      Database.connect
+    end
 
-  # Retrieve the most clicked link
-  def most_clicked
-    Click.order(count: :desc).first
-  end
+    def track(link)
+      click = Click.find_or_initialize_by(link: link)
+      click.count += 1
+      click.save
+    end
 
-  # Generate a report of all clicks
-  def report
-    Click.all.map { |click| { link: click.link, count: click.count } }
+    # Retrieve the most clicked link
+    def most_clicked
+      Click.order(count: :desc).first
+    end
+
+    # Generate a report of all clicks
+    def report
+      Click.all.map { |click| { link: click.link, count: click.count } }
+    end
   end
 end

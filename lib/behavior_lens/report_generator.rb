@@ -13,7 +13,9 @@ module BehaviorLens
 
       data = {
         clicks: clicks.map { |click| { link: click[:link], count: click[:count] } },
-        sessions: sessions.map { |session| { user_id: session[:user_id], start_time: session[:start_time], end_time: session[:end_time] } },
+        sessions: sessions.map do |session|
+          { user_id: session[:user_id], start_time: session[:start_time], end_time: session[:end_time] }
+        end,
         events: events.map { |event| { name: event[:name], metadata: event[:metadata], timestamp: event[:timestamp] } }
       }
 
@@ -29,7 +31,7 @@ module BehaviorLens
 
     private
 
-    def self.generate_csv(data)
+    def generate_csv(data)
       CSV.generate do |csv|
         csv << %w[Category Item Details]
 

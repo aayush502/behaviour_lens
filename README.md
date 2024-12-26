@@ -55,9 +55,9 @@ To use BehaviorLens in your project, require the gem and start analyzing behavio
 require 'behavior_lens'
 
 # Example: Analyzing a set of user actions
-analyzer = BehaviorLens::Analyzer.new
-analyzer.track("user_clicked_button")
-analyzer.track("user_scrolled_page")
+analyzer = BehaviorLens::Tracker.new
+analyzer.track_event("user_clicked_button", {name: 'btn1'})
+analyzer.track_click("https://example.com")
 
 report = analyzer.generate_report
 puts report

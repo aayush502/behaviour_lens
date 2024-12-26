@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'byebug'
+require_relative '../behavior_lens/models/session'
+
 module BehaviorLens
   class SessionTracker
     def initialize

@@ -25,9 +25,9 @@ Gem::Specification.new do |spec|
 
   spec.post_install_message = 'Thank you for installing BehaviorLens! Check out https://github.com/aayush502/behaviour_lens for usage instructions.'
   # behavior_lens.gemspec
-  spec.add_dependency 'activerecord', '~> 5.0'
+  spec.add_dependency 'activerecord', '~> 7.2', '>= 7.2.2.1'
   # behavior_lens.gemspec
-  spec.add_dependency 'sqlite3', '~> 2.5.0'
+  spec.add_dependency 'mysql2'
 
   spec.add_development_dependency 'rspec', '~> 3.0'
 
