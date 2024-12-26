@@ -1,43 +1,116 @@
 # BehaviorLens
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/BehaviorLens`. To experiment with that code, run `bin/console` for an interactive prompt.
+BehaviorLens is a Ruby gem designed to provide insights into user behavior and interaction patterns, enabling developers to understand and optimize user experiences.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem 'behavior_lens'
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Then execute:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
+```
+
+Or install it yourself as:
+
+```bash
+gem install behavior_lens
+```
+
+## Database Setup
+
+BehaviorLens requires a MySQL database to store tracked data.
+
+### 1. Create a Database
+```sql
+CREATE DATABASE behavior_lens;
+```
+
+### 2. Connect to database
+```ruby
+require 'behavior_lens'
+
+BehaviorLens::Database.connect(
+  database: 'your_database_name',
+  username: 'your_username',
+  password: 'your_password',
+  host: 'your_host' # Usually 'localhost'
+)
+```
+### 3. Initialize the Database Schema
+```ruby
+BehaviorLens::Database.setup
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+To use BehaviorLens in your project, require the gem and start analyzing behavior patterns. Here's a quick example:
+
+```ruby
+require 'behavior_lens'
+
+# Example: Analyzing a set of user actions
+analyzer = BehaviorLens::Tracker.new
+analyzer.track_event("user_clicked_button", {name: 'btn1'})
+analyzer.track_click("https://example.com")
+
+report = analyzer.generate_report
+puts report
+```
+
+Detailed documentation for advanced usage will be available soon.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+To get started with development:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/aayush502/behavior_lens.git
+   cd behavior_lens
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   bin/setup
+   ```
+
+3. Run the interactive console for experimentation:
+
+   ```bash
+   bin/console
+   ```
+
+4. To build and install the gem locally:
+
+   ```bash
+   bundle exec rake install
+   ```
+
+5. To release a new version:
+
+   - Update the version number in `lib/behavior_lens/version.rb`.
+   - Run:
+     ```bash
+     bundle exec rake release
+     ```
+   - This will tag the version, push changes to GitHub, and publish the gem to [RubyGems](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/BehaviorLens. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/BehaviorLens/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/aayush502/behavior\_lens](https://github.com/aayush502/behavior_lens). Contributions are expected to adhere to the [Code of Conduct](https://github.com/aayush502/behavior_lens/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+BehaviorLens is open source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
-Everyone interacting in the BehaviorLens project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/BehaviorLens/blob/master/CODE_OF_CONDUCT.md).
+All participants in the BehaviorLens project are expected to follow the [Code of Conduct](https://github.com/aayush502/behavior_lens/blob/main/CODE_OF_CONDUCT.md).

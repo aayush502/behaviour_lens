@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Specify your gem's dependencies in BehaviorLens.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+gem 'activerecord', '~> 7.2', '>= 7.2.2.1'
+gem 'byebug'
+gem 'mysql2'
+gem 'rake', '~> 13.0'
