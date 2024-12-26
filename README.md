@@ -22,6 +22,31 @@ Or install it yourself as:
 gem install behavior_lens
 ```
 
+## Database Setup
+
+BehaviorLens requires a MySQL database to store tracked data.
+
+### 1. Create a Database
+```sql
+CREATE DATABASE behavior_lens;
+```
+
+### 2. Connect to database
+```ruby
+require 'behavior_lens'
+
+BehaviorLens::Database.connect(
+  database: 'your_database_name',
+  username: 'your_username',
+  password: 'your_password',
+  host: 'your_host' # Usually 'localhost'
+)
+```
+### 3. Initialize the Database Schema
+```ruby
+BehaviorLens::Database.setup
+```
+
 ## Usage
 
 To use BehaviorLens in your project, require the gem and start analyzing behavior patterns. Here's a quick example:
